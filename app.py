@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-API_URL = "http://localhost:8000/predict"  
+API_URL = "https://x2lqtfqkgd.execute-api.us-east-1.amazonaws.com/default/fnEmociones"  
 st.set_page_config(layout="wide")
 st.markdown("<h1 style='text-align: center;'>Detector de emociones</h1>", unsafe_allow_html=True)
 st.markdown("<h2 style='text-align: center;'>Detecta emociones en imágenes de personas</h2>", unsafe_allow_html=True)
