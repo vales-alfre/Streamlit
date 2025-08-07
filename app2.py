@@ -61,7 +61,7 @@ with col2:
                 draw.text((left, top - 10), item["placa_detectada"], fill="red")
 
                 # Mostrar imagen modificada
-                st.image(image, caption="📍 Imagen con placa detectada", use_column_width=True)
+                st.image(image, caption="📍 Imagen con placa detectada", use_container_width=True)
                 st.write(f"🔍 **Placa detectada:** `{item['placa_detectada']}`")
                 st.markdown(f"[🔗 Ver imagen original]({item['image_url']})", unsafe_allow_html=True)
                 st.markdown("---")
