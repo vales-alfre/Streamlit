@@ -5,7 +5,7 @@ import json
 from PIL import Image, ImageDraw
 from io import BytesIO
 
-API_URL = "https://x2lqtfqkgd.execute-api.us-east-1.amazonaws.com/default/fnEmociones"
+API_URL = "https://u4bpgs8o43.execute-api.us-east-1.amazonaws.com/default/fnPlacaReko"
 
 st.set_page_config(layout="wide")
 st.markdown("<h1 style='text-align: center;'>Detector de placas</h1>", unsafe_allow_html=True)
@@ -44,7 +44,7 @@ with col2:
             st.markdown(f"### 📷 Imagen #{len(st.session_state.historial) - i + 1}")
             try:
                 # Descargar imagen original
-                response = requests.get(item["imagen_original_url"])
+                response = requests.get(item["image_url"])
                 image = Image.open(BytesIO(response.content))
 
                 # Dibujar bounding box
@@ -52,10 +52,10 @@ with col2:
                 w, h = image.size
                 box = item["bounding_box"]
 
-                left = box["left"] * w
-                top = box["top"] * h
-                right = left + box["width"] * w
-                bottom = top + box["height"] * h
+                left = box["Left"] * w
+                top = box["Top"] * h
+                right = left + box["Width"] * w
+                bottom = top + box["Height"] * h
 
                 draw.rectangle([left, top, right, bottom], outline="red", width=4)
                 draw.text((left, top - 10), item["placa_detectada"], fill="red")
@@ -63,7 +63,7 @@ with col2:
                 # Mostrar imagen modificada
                 st.image(image, caption="📍 Imagen con placa detectada", use_column_width=True)
                 st.write(f"🔍 **Placa detectada:** `{item['placa_detectada']}`")
-                st.markdown(f"[🔗 Ver imagen original]({item['imagen_original_url']})", unsafe_allow_html=True)
+                st.markdown(f"[🔗 Ver imagen original]({item['image_url']})", unsafe_allow_html=True)
                 st.markdown("---")
 
             except Exception as e:
